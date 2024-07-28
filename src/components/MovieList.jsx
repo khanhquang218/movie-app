@@ -5,18 +5,6 @@ import 'react-multi-carousel/lib/styles.css';
 import Modal from 'react-modal';
 import YouTube from 'react-youtube';
 
-//config modals
-const customStyles = {
-	content: {
-		top: '50%',
-		left: '50%',
-		right: 'auto',
-		bottom: 'auto',
-		marginRight: '-50%',
-		transform: 'translate(-50%, -50%)',
-	},
-};
-
 //setup react-youtube
 const opts = {
 	height: '390',
@@ -92,8 +80,26 @@ const MovieList = ({ title, data }) => {
 					))}
 			</Carousel>
 
-			<Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)} style={customStyles} contentLabel="Example Modal">
-				{/* <YouTube videoId={trailerKey} opts={opts} onReady={this._onReady} />; */}
+			<Modal
+				isOpen={modalIsOpen}
+				onRequestClose={() => setModalIsOpen(false)}
+				style={{
+					overlay: {
+						position: 'fixed',
+						zIndex: 9999,
+					},
+					content: {
+						top: '50%',
+						left: '50%',
+						right: 'auto',
+						bottom: 'auto',
+						marginRight: '-50%',
+						transform: 'translate(-50%, -50%)',
+					},
+				}}
+				contentLabel="Example Modal"
+			>
+				<YouTube videoId={trailerKey} opts={opts} />;
 			</Modal>
 		</div>
 	);
